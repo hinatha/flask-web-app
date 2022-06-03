@@ -38,7 +38,6 @@ class User(db.Model, UserMixin):
     def is_duplicate_email(self):
         return User.query.filter_by(email=self.email).first() is not None
 
-
 # ログインしているユーザー情報を取得する関数を作成する
 @login_manager.user_loader
 def load_user(user_id):
