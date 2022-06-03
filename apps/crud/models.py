@@ -17,6 +17,9 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
+    # backrefを利用しrelation情報を設定する
+    user_images = db.relationship("UserImage", backref="user")
+
     # パスワードをセットするためのプロパティ
     @property
     def password(self):
@@ -34,7 +37,6 @@ class User(db.Model, UserMixin):
     # メールアドレス重複チェックをする
     def is_duplicate_email(self):
         return User.query.filter_by(email=self.email).first() is not None
-
 
 # ログインしているユーザー情報を取得する関数を作成する
 @login_manager.user_loader
