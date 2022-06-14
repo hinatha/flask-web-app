@@ -89,3 +89,6 @@ images/
 
 # trained models files
 *.pt
+
+# remove .DS_Store
+.DS_Store
